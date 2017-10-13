@@ -1,0 +1,62 @@
+.grid button {
+  &::after, & a::after, &::before, & a::before {
+    content: '';
+    display: block;
+    position: absolute;
+  }
+
+  &::after, & a::after {
+    transform-origin: top left;
+    height: 100%;
+    width: var(--translate-tile);
+    background-color: var(--shadow-dark);
+    transition: transform var(--translate-duration) ease-in-out;
+  }
+
+  &::before, & a::before {
+    transform-origin: top center;
+    height: var(--translate-tile);
+    width: 100%;
+    background-color: var(--shadow-light);
+    transition: transform var(--translate-duration) ease-in-out;
+  }
+  &::after {
+    top: 0;
+    left: 100%;
+    transform: rotateY(-90deg) scaleX(0);
+  }
+
+  &::before {
+    top: 100%;
+    left: 0;
+    transform: rotateX(90deg) scaleY(0);
+  }
+
+  & a::after {
+    top: 0;
+    left: 0;
+    transform: rotateY(90deg) scaleX(0);
+  }
+
+  & a::before {
+    top: 0;
+    left: 0;
+    transform: rotateX(-90deg) scaleY(0);
+  }
+
+  &:hover::after {
+    transform: rotateY(-90deg) scaleX(1);
+  }
+
+  &:hover::before {
+    transform: rotateX(90deg) scaleY(1);
+  }
+
+  &:hover a::after {
+    transform: rotateY(90deg) scaleX(1);
+  }
+
+  &:hover a::before {
+    transform: rotateX(-90deg) scaleY(1);
+  }
+}

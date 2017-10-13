@@ -1,0 +1,119 @@
+@import "3d";
+@import "../css/animations.css";
+
+/* variables */
+:root {
+  --translate-tile: 40px;
+  --translate-duration: .4s;
+  --shadow-dark: darkgrey;
+  --shadow-light: lightgrey;
+}
+
+/* basic reset */
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  height: 70%;
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(40px, 1fr));
+  grid-template-rows: repeat(5, minmax(40px, 1fr));
+  grid-gap: 1px;
+  perspective: 1000px;
+
+  button {
+    border: none;
+    padding: 0;
+    position: relative;
+    z-index: 0;
+    transform-style: preserve-3d;
+    transition: box-shadow var(--translate-duration) ease-in-out,
+    z-index var(--translate-duration) ease-in-out;
+
+    /* pseudo-random tile blinking animation */
+    &:nth-child(n) a {
+      animation: blink 1s infinite alternate linear;
+    }
+    &:nth-child(2n) a {
+      animation: blink 1.2s 0.1s infinite alternate linear;
+    }
+    &:nth-child(3n) a {
+      animation: blink 1.3s 0.2s infinite alternate linear;
+    }
+    &:nth-child(4n) a {
+      animation: blink 1.4s 0.3s infinite alternate linear;
+    }
+    &:nth-child(5n) a {
+      animation: blink 1.5s 0.4s infinite alternate linear;
+    }
+
+    &:hover {
+      box-shadow: 0 0 15px 5px grey;
+      z-index: 1;
+      a {
+        animation: color-change 0.9s infinite alternate linear;
+        transform: translateZ(var(--translate-tile));
+      }
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    a {
+      height: 100%;
+      width: 100%;
+      font-family: "Calibri", sans-serif;
+      text-transform: uppercase;
+      text-decoration: none;
+      background-color: cornsilk;
+      color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform-style: preserve-3d;
+      transition: transform var(--translate-duration) ease-in-out;
+
+      span.btn-text-rotate {
+        display: inline-block;
+        transform: rotate(-90deg);
+      }
+    }
+  }
+}
+
+/* main buttons have higher z-index by default */
+#main, #gallery, #portfolio, #contacts {
+  z-index: 1;
+}
+
+#main {
+  grid-area: ~"2 / 2 / span 1 / span 2";
+}
+
+#gallery {
+  grid-area: ~"3 / 5 / span 2 / span 1";
+}
+
+#portfolio {
+  grid-area: ~"1 / 8 / span 1 / span 2";
+}
+
+#contacts {
+  grid-area: ~"3 / 9 / span 2 / span 2";
+  & ~ button {
+    /* disabling this property enables all buttons to be hoverable and animated */
+    pointer-events: none;
+  }
+}

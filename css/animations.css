@@ -1,0 +1,40 @@
+@keyframes blink {
+    from {
+        background-color: cornsilk;
+    }
+    to {
+        background-color: #ffd31f;
+    }
+}
+
+/* psychodelic rainbow animation */
+@keyframes color-change {
+    0% {
+        background-color: red;
+        color: violet;
+    }
+    16.7% {
+        background-color: orange;
+        color: blue;
+    }
+    33.4% {
+        background-color: yellow;
+        color: lightblue;
+    }
+    66.7% {
+        background-color: green;
+        color: green;
+    }
+    83.4% {
+        background-color: lightblue;
+        color: yellow;
+    }
+    71.5% {
+        background-color: blue;
+        color: orange;
+    }
+    100% {
+        background-color: violet;
+        color: red;
+    }
+}
